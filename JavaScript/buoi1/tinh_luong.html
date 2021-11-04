@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		let luong = 14;
+		let thue;
+		if (luong >= 15) {
+			thue = luong * 30 / 100;
+		}
+		else if (luong > 7 && luong < 15) {
+			thue = luong * 20 / 100;
+		}
+		else if (luong < 7) {
+			thue = luong * 0.1
+		}
+		document.write(`thue: ${thue} trieu, luong rong: ${luong -= thue} trieu`);
+	</script>
+</body>
+</html>
