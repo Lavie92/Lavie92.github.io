@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="buoi2.css">
+</head>
+<body>
+    <div>
+        <h1 id="hello">Quà Tặng Cột Sống</h1>
+        <form id="myForm">
+            Nhập 1 số bất kỳ: <input type="number" id="numberEnter" onkeypress="return searchKeyPress(event);">
+        </form>
+        <button onclick="enterN();" id="enter" type="button">Go!</button>
+    </div>
+    <div style="font-size: 50px; font: Roboto;" id="result"></div>
+    <div style="text-align: bottom: 0px;">
+        <audio autoplay>
+        <source src="./music/hoa.mp3">
+    </audio>
+    </div>
+    <script>
+        function searchKeyPress(e) {
+            e = e || window.event;
+            if (e.keyCode == 13) {
+                document.getElementById('enter').click();
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script>
+        let count = 0;
+        //KiểM tra tính chẵn lẻ của 1 số
+        function isEvenNumber(n) {
+            if (n % 2 == 0) {
+                return true;
+            }
+            return false;
+        }
+        //Kiểm tra 1 số có phải số nguyên tố hay không
+        function isPrimeNumber(n) {
+            if (n < 2) {
+                return false;
+            }
+            if (n != 2 && n % 2 == 0) {
+                return false;
+            }
+            for (let i = 3; i <= Math.sqrt(n); i += 2) {
+                if (n % i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //In ra các số từ 1 đến n (từ n đến -1 nếu n là số âm)
+        function printResult(n) {
+            let print = document.getElementById("result");
+            if (isEvenNumber(n)) {
+                print.innerHTML = n + " là số chẵn <br>";
+            }
+            else if (!isEvenNumber(n)) {
+                print.innerHTML = n + " là số lẻ <br>";
+            }
+            if (isPrimeNumber(n)) {
+                print.innerHTML += n + " là số nguyên tố <br>";
+            }
+            else {
+                print.innerHTML += n + " không phải `số nguyên tố <br>";
+            }
+            if (n < 0) {
+                for (let i = n; i <= 1; i++) {
+                    print.innerHTML += i + "\t";
+                }
+            }
+            else {
+                for (let i = 1; i <= n; i++) {
+                    print.innerHTML += i + "\t";
+                }
+            }
+            print.addEventListener("keyup", function (event) {
+                if (event.keyCode === 13) {
+                    document.getElementById("button").click();
+                }
+            });
+            count++;
+            print.innerHTML += "<br> Bạn đã nhập: " + count + " lần";
+        }
+        function enterN() {
+            let n = parseFloat(document.getElementById("numberEnter").value);
+            printResult(n);
+        }
+    </script>
+</body>
+
+</html>
